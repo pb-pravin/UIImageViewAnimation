@@ -56,7 +56,14 @@
     self.butterflyView.animationImages = butterflies;
     self.butterflyView.animationDuration=0.75f;
     [self.view addSubview:self.butterflyView];
-[self.butterflyView startAnimating];
+    [self.butterflyView startAnimating];
+
+    // second butterfly view
+    UIImageView *butterflyView2 = [[UIImageView alloc] initWithFrame:CGRectMake(50.0f, 300.0f, 60.0f, 60.0f)];
+    butterflyView2.animationImages = butterflies;
+    butterflyView2.animationDuration = 0.50f;
+    [self.view addSubview:butterflyView2];
+    [butterflyView2 startAnimating];
 
 }
 
