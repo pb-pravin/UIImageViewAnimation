@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "UIView-SubviewGeometry.h"
 
 @interface ViewController ()
 
@@ -29,8 +30,9 @@
 #pragma mark - Animation
 -(void)updateButterfly:(NSTimer *)timer
 {
+    // this makes the butterfly dart around randomly
     [UIView animateWithDuration:0.6f animations:^{
-        // self.butterflyView.center = [self.butterflyView randomCenterInView:self.view withInset:10.0f];
+        self.butterflyView.center = [self.butterflyView randomCenterInView:self.view withInset:10.0f];
         
     }];
 }
@@ -58,10 +60,15 @@
     [self.view addSubview:self.butterflyView];
     [self.butterflyView startAnimating];
 
+    // this makes the entire butterfly do all sorts of fun things
+    // leans on Erica Sadun's Category extension UIView-SubviewGeometry
+    [NSTimer scheduledTimerWithTimeInterval:3.0f target:self selector:@selector(updateButterfly:) userInfo:nil repeats:YES];
+
+
     // second butterfly view
     UIImageView *butterflyView2 = [[UIImageView alloc] initWithFrame:CGRectMake(50.0f, 300.0f, 60.0f, 60.0f)];
     butterflyView2.animationImages = butterflies;
-    butterflyView2.animationDuration = 0.50f;
+    butterflyView2.animationDuration = 0.25f;
     [self.view addSubview:butterflyView2];
     [butterflyView2 startAnimating];
 
